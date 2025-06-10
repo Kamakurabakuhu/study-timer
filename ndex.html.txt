@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勉強時間トラッカー</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #timer { font-size: 2em; }
+        button { margin: 10px; padding: 10px; font-size: 1em; }
+    </style>
+</head>
+<body>
+    <div id="timer">00:00:00</div>
+    <button id="start">スタート</button>
+    <button id="stop">ストップ</button>
+    <script>
+        let timer;
+        let seconds = 0;
+
+
+        document.getElementById('start').addEventListener('click', function() {
+            timer = setInterval(() => {
+                seconds++;
+                document.getElementById('timer').innerText = new Date(seconds * 1000).toISOString().substr(11, 8);
+            }, 1000);
+        });
+
+
+        document.getElementById('stop').addEventListener('click', function() {
+            clearInterval(timer);
+            alert(`勉強時間: ${new Date(seconds * 1000).toISOString().substr(11, 8)}`);
+            // ここでデータを保存する処理を追加
+        });
+    </script>
+</body>
+</html>
